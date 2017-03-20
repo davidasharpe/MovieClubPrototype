@@ -1,0 +1,67 @@
+
+
+.main{
+  margin-top: 100px;
+}
+
+.form{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-control{
+  width: 90%;
+}
+
+.margin-btm-5{
+  margin-bottom: 5px;
+}
+
+.form-icon{
+  position: relative;
+  top: 8px;
+  left: -20px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add_button{
+  position: relative;
+  top: 8px;
+  left: -5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: green;
+  float: right;
+}
+
+.remove_button{
+  position: relative;
+  top: 8px;
+  left: -5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: red;
+  float: right;
+}
+
+.add_button:hover{
+  text-decoration: none;
+  color: grey;
+}
+
+.remove_button:hover{
+  text-decoration: none;
+  color: grey;
+}
+
+.field{
+  margin-top: 5px;
+}
+
+.link{
+  padding: 10px;
+}
