@@ -40,6 +40,7 @@
             <div class="col-sm-5">
               <div class="director">
                 <div class="field">
+                  <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
                   <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                   <select class="form-control">
                     <option value="select">select</option>
