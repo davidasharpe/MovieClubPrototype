@@ -11,7 +11,8 @@ Example client script for JQUERY:AJAX -> PHP:MYSQL example
   <!-------------------------------------------------------------------------
   1) Create some html content that can be accessed by jquery+
 
-  https://openenergymonitor.org/forum-archive/node/107.html
+  https://openenergymonitor.org/forum-archive/node/107.
+  htmlhttps://programmerblog.net/jquery-ajax-get-example-php-mysql/
   -------------------------------------------------------------------------->
   <h2> Client example </h2>
   <h3>Output: </h3>
