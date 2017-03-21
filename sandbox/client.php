@@ -13,6 +13,9 @@ Example client script for JQUERY:AJAX -> PHP:MYSQL example
 
   https://openenergymonitor.org/forum-archive/node/107.
   htmlhttps://programmerblog.net/jquery-ajax-get-example-php-mysql/
+  http://www.w3resource.com/ajax/working-with-PHP-and-MySQL.php
+
+
   -------------------------------------------------------------------------->
   <h2> Client example </h2>
   <h3>Output: </h3>
