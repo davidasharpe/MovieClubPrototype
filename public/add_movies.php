@@ -64,7 +64,7 @@
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <select class="form-control">
-                  <option value="select"></option>
+                  <option value="select">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
                       echo "<option value='{$producers["ProducerID"]}'>".$producers["Producers"]."</option>";
@@ -73,7 +73,7 @@
                 </select>
               </div>
             </div>
-            <a href="#" class="link">Add Producer</a>
+            <a href="add_producer.php" class="link">Add Producer</a>
           </div>
           <div class="col-sm-5">
           </div>
@@ -105,7 +105,7 @@
                 }
                 ?>
             </select>
-            <a href="#" class="link">Add Genre</a>
+            <a href="add_genre.php" class="link">Add Genre</a>
           </div>
           <div class="col-sm-5">
           </div>
@@ -126,7 +126,7 @@
                 </select>
               </div>
             </div>
-            <a href="#" class="link">Add Actor</a>
+            <a href="add_actor.php" class="link">Add Actor</a>
           </div>
           <div class="col-sm-5">
           </div>
@@ -142,7 +142,7 @@
               }
               ?>
             </select>
-            <a href="#" class="link">Add Distributor</a>
+            <a href="add_distributor.php" class="link">Add Distributor</a>
           </div>
           <div class="col-sm-5">
           </div>

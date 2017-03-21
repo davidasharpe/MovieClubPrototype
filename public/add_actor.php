@@ -11,7 +11,7 @@
       $first_name = mysqli_real_escape_string($connection, $first_name);
       $last_name = mysqli_real_escape_string($connection, $last_name);
 
-      $query = "INSERT INTO producers
+      $query = "INSERT INTO actors
                 (FirstName, LastName)
                 VALUES ('{$first_name}','{$last_name}')";
 
@@ -35,8 +35,8 @@
  <div class="container">
    <div class="main">
      <div class="starter-template">
-       <h1>Add Producer</h1>
-       <form action="add_producer.php" method="post" class="form-horizontal">
+       <h1>Add Actor</h1>
+       <form action="add_actor.php" method="post" class="form-horizontal">
         <div class="form-group">
           <label for="firstName" class="col-sm-2 control-label">First Name</label>
           <div class="col-sm-5">
