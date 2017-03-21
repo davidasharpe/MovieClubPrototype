@@ -9,7 +9,9 @@ Example client script for JQUERY:AJAX -> PHP:MYSQL example
   <body>
 
   <!-------------------------------------------------------------------------
-  1) Create some html content that can be accessed by jquery
+  1) Create some html content that can be accessed by jquery+
+
+  https://openenergymonitor.org/forum-archive/node/107.html
   -------------------------------------------------------------------------->
   <h2> Client example </h2>
   <h3>Output: </h3>
