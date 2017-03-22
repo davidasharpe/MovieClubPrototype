@@ -132,7 +132,7 @@
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
                   <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                   <select class="form-control" name="directors[0]">
-                    <option value="select">select</option>
+                    <option value="">select</option>
                       <?php
                       while ($directors = mysqli_fetch_assoc($result_director)){
                         echo "<option value='{$directors["DirectorID"]}'>".$directors["Directors"]."</option>";
@@ -153,7 +153,7 @@
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <select class="form-control" name="producers[0]">
-                  <option value="select">select</option>
+                  <option value="">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
                       echo "<option value='{$producers["ProducerID"]}'>".$producers["Producers"]."</option>";
@@ -187,7 +187,7 @@
           <label for="genre" class="col-sm-2 control-label">Genre</label>
           <div class="col-sm-5">
             <select class="form-control" name="genre">
-              <option value="select">select</option>
+              <option value="">select</option>
                 <?php
                 while ($genres = mysqli_fetch_assoc($result_genre)){
                   echo "<option value='{$genres["GenreID"]}'>".$genres["Genre"]."</option>";
@@ -206,7 +206,7 @@
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <select class="form-control" name="actors[0]">
-                  <option value="select">select</option>
+                  <option value="">select</option>
                   <?php
                   while ($actors = mysqli_fetch_assoc($result_actor)){
                     echo "<option value='{$actors["ActorID"]}'>".$actors["Actors"]."</option>";
@@ -223,8 +223,8 @@
         <div class="form-group">
           <label for="distributor" class="col-sm-2 control-label">Distributor</label>
           <div class="col-sm-5">
-            <select class="form-control" id="distributor">
-              <option value="select">select</option>
+            <select class="form-control" name="distributor">
+              <option value="">select</option>
               <?php
               while ($distributors = mysqli_fetch_assoc($result_distributor)){
                 echo "<option value='{$distributors["DistributorID"]}'>".$distributors["Distributor"]."</option>";
