@@ -51,47 +51,55 @@
 
     // Add Director(s) to new movie  --> single director only, need to add loop for multiple directors
 
-    $director_id = $_POST['DirectorID'];
+    $directors = $_POST['directors[]'];
 
-    $director_id = mysqli_real_escape_string($connection, $director_id);
-
-    $query = "INSERT INTO director_movie
-              (DirectorID, MovieID)
-              VALUES ('{$director_id}', '{$movie_id}')";
-
-    $result = mysqli_query($connection, $query);
-
-    test_query($result);
-
+    foreach($directors as $director){
+      
+      $director_id = mysqli_real_escape_string($connection, $director);
+      
+      $query = "INSERT INTO director_movie              
+                (DirectorID, MovieID)              
+                VALUES ('{$director_id}', '{$movie_id}')";
+      
+      $result = mysqli_query($connection, $query);
+      
+      test_query($result);
+    }
+    
     // Add Producer(s) to new movie  --> single producer only, need to add loop for multiple producers
 
-    $producer_id = $_POST['ProducerID'];
+    $producers = $_POST['producers[]'];
 
-    $producer_id = mysqli_real_escape_string($connection, $producer_id);
+    foreach($producers as $producer){
+      
+      $producer_id = mysqli_real_escape_string($connection, $producer);
 
-    $query = "INSERT INTO producer_movie
-              (ProducerID, MovieID)
-              VALUES ('{$producer_id}', '{$movie_id}')";
+      $query = "INSERT INTO producer_movie
+                (ProducerID, MovieID)
+                VALUES ('{$producer_id}', '{$movie_id}')";
 
-    $result = mysqli_query($connection, $query);
+      $result = mysqli_query($connection, $query);
 
-    test_query($result);
+      test_query($result);
+    }
 
     // Add Actor(s) to new movie --> single actor only, need to add loop for multiple actors
 
-    $actor_id = $_POST['ActorID'];
+    $actors = $_POST['actors[]'];
+    
+    foreach($actors as $actor){
+    
+      $actor_id = mysqli_real_escape_string($connection, $actor);
 
-    $actor_id = mysqli_real_escape_string($connection, $actor_id);
+      $query = "INSERT INTO actor_movie
+                (ActorID, MovieId)
+                VALUES ('{$actor_id}', '{$movie_id}')";
 
-    $query = "INSERT INTO actor_movie
-              (ActorID, MovieId)
-              VALUES ('{$actor_id}', '{$movie_id}')";
+      $result = mysqli_query($connection, $query);
 
-    $result = mysqli_query($connection, $query);
-
-    test_query($result);
-
-  } else{
+      test_query($result);
+    }
+ } else{
     $title = "";
     $release_date = "";
     $running_time = "";
@@ -123,7 +131,7 @@
                 <div class="field">
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
                   <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                  <select class="form-control" name="director">
+                  <select class="form-control" name="directors[0]">
                     <option value="select">select</option>
                       <?php
                       while ($directors = mysqli_fetch_assoc($result_director)){
@@ -144,7 +152,7 @@
             <div class="producer">
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                <select class="form-control" name="producer">
+                <select class="form-control" name="producers[0]">
                   <option value="select">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
@@ -197,7 +205,7 @@
             <div class="actor">
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                <select class="form-control">
+                <select class="form-control" name="actors[0]">
                   <option value="select">select</option>
                   <?php
                   while ($actors = mysqli_fetch_assoc($result_actor)){
