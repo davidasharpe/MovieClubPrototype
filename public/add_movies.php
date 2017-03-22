@@ -18,6 +18,36 @@
   // Test query results
   if ((!$result_director) || (!$result_producer ) || (!$result_actor ) || (!$result_genre) || (!$result_distributor )){
     die("Database query failed.");
+    
+    
+  if(isset($_POST['submit'])){
+    
+    $title = $_POST['title'];
+    $release_date = $_POST['releasedate']
+    $running_time = $_POST['runningtime'];
+    $genre = $_POST['genre';
+    $distributor = $_POST['distributor'];
+
+    $title = mysqli_real_escape_string($connection, $title); 
+    $release_date = mysqli_real_escape_string($connection, $release_date); 
+    $running_time = mysqli_real_escape_string($connection, $running_time); 
+    $genre = mysqli_real_escape_string($connection, $genre);                
+    $distributor = mysqli_real_escape_string($connection, $distributor);                
+    
+    $query = "INSERT INTO movies
+              (Title, ReleaseDate, RunningTime, Genre, Distributor)
+              VALUES ('{$title}','{$release_date}','{$running_time}', '{$genre}', '{$distributor}')";                
+                    
+    $result = mysqli_query($connection, $query);              
+    
+    test_query($result);
+    
+    $last_id = mysqli_insert_id($connection));
+                    
+    
+                    
+  }
+    
   }
  ?>
 
@@ -26,11 +56,11 @@
      <div class="starter-template">
        <h1>Add Movie</h1>
        <div id="demo"></div>
-       <form class="form-horizontal">
+       <form action= "add_movies.php" method="post" class="form-horizontal">
         <div class="form-group">
           <label for="title" class="col-sm-2 control-label">Title</label>
           <div class="col-sm-5">
-            <input type="texbox" class="form-control" id="title">
+            <input type="texbox" class="form-control" name="title">
           </div>
           <div class=col-sm-5>
           </div>
@@ -42,7 +72,7 @@
                 <div class="field">
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
                   <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                  <select class="form-control">
+                  <select class="form-control" name="director">
                     <option value="select">select</option>
                       <?php
                       while ($directors = mysqli_fetch_assoc($result_director)){
@@ -63,7 +93,7 @@
             <div class="producer">
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                <select class="form-control">
+                <select class="form-control" name="producer">
                   <option value="select">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
@@ -81,7 +111,7 @@
         <div class="form-group">
           <label for="releasedate" class="col-sm-2 control-label">Release Date</label>
           <div class="col-sm-5">
-            <input type="date" class="form-control" id="releasedate">
+            <input type="date" class="form-control" name="releasedate">
           </div>
           <div class="col-sm-5">
           </div>
@@ -89,7 +119,7 @@
         <div class="form-group">
           <label for="runningtime" class="col-sm-2 control-label">Running Time</label>
           <div class="col-sm-5">
-            <input type="texbox" class="form-control" id="runningtime">
+            <input type="texbox" class="form-control" name="runningtime">
           </div>
           <div class="col-sm-5">
           </div>
@@ -97,7 +127,7 @@
         <div class="form-group">
           <label for="genre" class="col-sm-2 control-label">Genre</label>
           <div class="col-sm-5">
-            <select class="form-control" id="genre">
+            <select class="form-control" name="genre">
               <option value="select">select</option>
                 <?php
                 while ($genres = mysqli_fetch_assoc($result_genre)){
