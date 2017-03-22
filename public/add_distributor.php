@@ -5,7 +5,7 @@
 
   if (isset($_POST['submit'])){
 
-      $distributor = $_POST["genre"];
+      $distributor = $_POST["distributor"];
 
       $distributor = mysqli_real_escape_string($connection, $distributor);
 

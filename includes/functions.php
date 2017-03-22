@@ -14,7 +14,6 @@ function test_query($query_result){
   }
 }
 
-
 // get data for select lists
 
   function select_concat($table, $column1, $column2, $column_name){
@@ -24,7 +23,6 @@ function test_query($query_result){
     return $query_result;
   }
 
-
   function select($table, $column_name){
     $query_result = "SELECT {$column_name}
                      FROM {$table}
@@ -33,18 +31,11 @@ function test_query($query_result){
   }
 
   function select_2col($table, $column1, $column2, $column_name){
-    $query_result = "SELECT {column1}, {column2}
-                    FROM {table}
+    $query_result = "SELECT {$column1}, {$column2}
+                    FROM {$table}
                     ORDER BY {$column_name} ASC";
+    return $query_result;
   }
-
-
-
-
-
-
-
-
 
 
 ?>

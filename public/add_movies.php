@@ -3,6 +3,8 @@
   require_once('../includes/functions.php');
   include('../includes/header.php');
 
+  // Load data for select drop down lists in form
+
   $query_director = select_concat('directors', 'FirstName', 'LastName', 'Directors');
   $query_producer = select_concat('producers',  'FirstName', 'LastName','Producers');
   $query_actor = select_concat('actors', 'FirstName', 'LastName', 'Actors');
@@ -16,39 +18,88 @@
   $result_distributor = mysqli_query($connection, $query_distributor);
 
   // Test query results
+
   if ((!$result_director) || (!$result_producer ) || (!$result_actor ) || (!$result_genre) || (!$result_distributor )){
     die("Database query failed.");
-    
-    
+
+
   if(isset($_POST['submit'])){
-    
+
+    // Add new movie
+
     $title = $_POST['title'];
-    $release_date = $_POST['releasedate']
+    $release_date = $_POST['releasedate'];
     $running_time = $_POST['runningtime'];
-    $genre = $_POST['genre';
+    $genre = $_POST['genre'];
     $distributor = $_POST['distributor'];
 
-    $title = mysqli_real_escape_string($connection, $title); 
-    $release_date = mysqli_real_escape_string($connection, $release_date); 
-    $running_time = mysqli_real_escape_string($connection, $running_time); 
-    $genre = mysqli_real_escape_string($connection, $genre);                
-    $distributor = mysqli_real_escape_string($connection, $distributor);                
-    
+    $title = mysqli_real_escape_string($connection, $title);
+    $release_date = mysqli_real_escape_string($connection, $release_date);
+    $running_time = mysqli_real_escape_string($connection, $running_time);
+    $genre = mysqli_real_escape_string($connection, $genre);
+    $distributor = mysqli_real_escape_string($connection, $distributor);
+
     $query = "INSERT INTO movies
               (Title, ReleaseDate, RunningTime, Genre, Distributor)
-              VALUES ('{$title}','{$release_date}','{$running_time}', '{$genre}', '{$distributor}')";                
-                    
-    $result = mysqli_query($connection, $query);              
-    
-    test_query($result);
-    
-    $last_id = mysqli_insert_id($connection));
-                    
-    
-                    
+              VALUES ('{$title}', '{$release_date}', '{$running_time}', '{$genre}', '{$distributor}')";
+
+    $result = mysqli_query($connection, $query);
+
+    test_query($result);
+
+    $movie_id = mysqli_insert_id($connection);
+
+    // Add Director(s) to new movie  --> single director only, need to add loop for multiple directors
+
+    $director_id = $_POST['DirectorID'];
+
+    $director_id = mysqli_real_escape_string($connection, $director_id);
+
+    $query = "INSERT INTO director_movie
+              (DirectorID, MovieID)
+              VALUES ('{$director_id}', '{$movie_id}')";
+
+    $result = mysqli_query($connection, $query);
+
+    test_query($result);
+
+    // Add Producer(s) to new movie  --> single producer only, need to add loop for multiple producers
+
+    $producer_id = $_POST['ProducerID'];
+
+    $producer_id = mysqli_real_escape_string($connection, $producer_id);
+
+    $query = "INSERT INTO producer_movie
+              (ProducerID, MovieID)
+              VALUES ('{$producer_id}', '{$movie_id}')";
+
+    $result = mysqli_query($connection, $query);
+
+    test_query($result);
+
+    // Add Actor(s) to new movie --> single actor only, need to add loop for multiple actors
+
+    $actor_id = $_POST['ActorID'];
+
+    $actor_id = mysqli_real_escape_string($connection, $actor_id);
+
+    $query = "INSERT INTO actor_movie
+              (ActorID, MovieId)
+              VALUES ('{$actor_id}', '{$movie_id}')";
+
+    $result = mysqli_query($connection, $query);
+
+    test_query($result);
+
+  } else{
+    $title = "";
+    $release_date = "";
+    $running_time = "";
+    $genre = "";
+    $disstributor = "";
+    }
   }
-    
-  }
+
  ?>
 
  <div class="container">
