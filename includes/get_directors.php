@@ -18,6 +18,6 @@ if (mysqli_num_rows($result) > 0){
 
 echo json_encode($result_array);
 
-mysqli_close($conn);
+mysqli_close($connection);
 
 ?>
