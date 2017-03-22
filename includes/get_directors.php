@@ -4,7 +4,7 @@
 
   $result_array = array();
 
-  $query = select_concat('directors', 'FirstName', 'LastName', 'Directors');
+  $query = select_2col('directors', 'FirstName', 'LastName', 'FirstName');
 
   $result = mysqli_query($connection, $query);
 
