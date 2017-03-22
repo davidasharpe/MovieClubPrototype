@@ -32,6 +32,14 @@ function test_query($query_result){
     return $query_result;
   }
 
+  function select_2col($table, $column1, $column2, $column_name){
+    $query_result = "SELECT {column1}, {column2}
+                    FROM {table}
+                    ORDER BY {$column_name} ASC";
+  }
+
+
+
 
 
 
