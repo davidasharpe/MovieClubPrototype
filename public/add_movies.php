@@ -134,11 +134,15 @@
                 <div class="field">
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
                   <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+<<<<<<< Updated upstream
                   <select class="form-control" name="directors[0]">
+=======
+                  <select class="form-control" name="directors[]">
+>>>>>>> Stashed changes
                     <option value="">select</option>
                       <?php
                       while ($directors = mysqli_fetch_assoc($result_director)){
-                        echo "<option value='{$directors["DirectorID"]}'>".$directors["Directors"]."</option>";
+                        echo "<option value=' {$directors["DirectorID"]}'>".$directors["Directors"]."</option>";
                       }
                       ?>
                   </select>
@@ -155,7 +159,11 @@
             <div class="producer">
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+<<<<<<< Updated upstream
                 <select class="form-control" name="producers[0]">
+=======
+                <select class="form-control" name="producers[]">
+>>>>>>> Stashed changes
                   <option value="">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
@@ -208,7 +216,11 @@
             <div class="actor">
               <div class="field">
                 <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+<<<<<<< Updated upstream
                 <select class="form-control" name="actors[0]">
+=======
+                <select class="form-control" names="actors[]">
+>>>>>>> Stashed changes
                   <option value="">select</option>
                   <?php
                   while ($actors = mysqli_fetch_assoc($result_actor)){
