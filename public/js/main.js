@@ -5,13 +5,13 @@ $(document).ready(function(){
   var maxField = 10; //Input fields increment limitation
 
   var fieldHTML = '<div class="field">' +
-                  '<a href="javascript:void(0);" class="remove_button">' + 
+                  '<a href="javascript:void(0);" class="remove_button">' +
                   'span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a>';
-  
+
   var directors[];
   var producers[];
   var actors[];
-  
+
   var d = 1; //Initial field counter is 1
   var p = 1;
   var a = 1;
@@ -30,9 +30,8 @@ $(document).ready(function(){
   $('.director').on('click', '.add_button', function(e) { //Once add button is clicked
     if(d < maxField){ //Check maximum number of input fields
       d++; //Increment field counter
-      fieldHTML += '<select class="form-control" name="' + directors[d] +'">' +                
-                   '<option value="">select</option>';
-      
+      fieldHTML += '<select class="form-control" name="' + directors[d] +'">' +               
+                   '<option value="">select</option>';    
         $.ajax({
         method: 'GET',
         url: '../../includes/get_directors.php'
@@ -44,7 +43,6 @@ $(document).ready(function(){
         fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';
         });
       });
-
       fieldHTML += '</select></div>';
       $(this).parent('div').append(fieldHTML); // Add field html
     }
@@ -62,20 +60,20 @@ $(document).ready(function(){
     if(x < maxField){ //Check maximum number of input fields
       p++; //Increment field counter
 
-      fieldHTML += '<select class="form-control" name="' + producers[p] +'">' +                                   
-                   '<option value="">select</option>';              
-        $.ajax({        
-        method: 'GET',        
-        url: '../../includes/get_producers.php'        
+      fieldHTML += '<select class="form-control" name="' + producers[p] +'">' +                                  
+                   '<option value="">select</option>';             
+        $.ajax({       
+        method: 'GET',       
+        url: '../../includes/get_producers.php'       
         }).done.(function(data){
-                     
+
         var result = $.parseJSON(data);
-                     
-        $.each(result, function(key, value){        
-        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';        
-        });      
+
+        $.each(result, function(key, value){       
+        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';       
+        });     
      });
-      
+
     fieldHTML += '</select></div>';
 
     $(this).parent('div').append(fieldHTML); // Add field html
@@ -94,17 +92,17 @@ $(document).ready(function(){
     if(x < maxField){ //Check maximum number of input fields
       a++; //Increment field counter
 
-      fieldHTML += '</select></div>';fieldHTML += '<select class="form-control" name="' + actors[a] +'">' +                                   '<option value="">select</option>';              
-        $.ajax({        
-        method: 'GET',        
-        url: '../../includes/get_actors.php'        
-        }).done.(function(data){        
-        var result = $.parseJSON(data);        
-          
-        $.each(result, function(key, value){        
-      
-        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';        
-        });      
+      fieldHTML += '</select></div>';fieldHTML += '<select class="form-control" name="' + actors[a] +'">' +                                   '<option value="">select</option>';             
+        $.ajax({       
+        method: 'GET',       
+        url: '../../includes/get_actors.php'       
+        }).done.(function(data){       
+        var result = $.parseJSON(data);       
+
+        $.each(result, function(key, value){       
+
+        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';       
+        });     
       });
       
       $(this).parent('div').append(fieldHTML); // Add field html

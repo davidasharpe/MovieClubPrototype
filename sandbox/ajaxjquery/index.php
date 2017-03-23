@@ -37,11 +37,13 @@
         $(this).append('clicked');
 
       $.ajax({
-        method: "GET", url: "getrecords.php",
+        method: "GET",
+
+        url: "getrecords.php",
 
       }).done(function( data ) {
 
-       var result = $.parseJSON(data);
+       var result = JSONparse(data);
 
        var string = "<table>" +
                     "<tr>" +

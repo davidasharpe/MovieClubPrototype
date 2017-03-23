@@ -32,7 +32,6 @@ if ($result -> num_rows > 0) {
         array_push($result_array, $row);
 
     }
-
 }
 
 /* send a JSON encded array to client */
