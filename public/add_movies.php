@@ -27,20 +27,26 @@
 
     // Add new movie
 
-    $title = $_POST['title'];
-
-    $release_date = str_replace("/", "-", $_POST['releasedate']);
+    $title = trim($_POST['title']);
+    $release_date = trim(str_replace("/", "-", $_POST['releasedate']));
     $release_date = date('Y-m-d', strtotime($release_date));
-
-    $running_time = $_POST['runningtime'];
-    $genre = $_POST['genre'];
-    $distributor = $_POST['distributor'];
+    $running_time = trim($_POST['runningtime']);
+    $genre = trim($_POST['genre']);
+    $distributor = trim($_POST['distributor']);
 
     $title = mysqli_real_escape_string($connection, $title);
     $release_date = mysqli_real_escape_string($connection, $release_date);
     $running_time = mysqli_real_escape_string($connection, $running_time);
     $genre = mysqli_real_escape_string($connection, $genre);
     $distributor = mysqli_real_escape_string($connection, $distributor);
+
+    if(isset($_POST['directors'])) {$directors = $_POST['directors'];}
+    if(isset($_POST['producers'])) {$producers = $_POST['producers'];}
+    if(isset($_POST['actors'])) {$actors = $_POST['actors'];}
+
+    $form_errors = false;
+
+    if(isblank($title))  
 
     $query = "INSERT INTO movies
               (Title, ReleaseDate, RunningTime, Genre, Distributor)
