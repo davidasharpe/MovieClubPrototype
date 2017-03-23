@@ -28,7 +28,10 @@
     // Add new movie
 
     $title = $_POST['title'];
-    $release_date = $_POST['releasedate'];
+    
+    $release_date = str_replace("/", "-", $_POST['releasedate']);
+    $release_date = date('Y-m-d', strtotime($release_date));
+    
     $running_time = $_POST['runningtime'];
     $genre = $_POST['genre'];
     $distributor = $_POST['distributor'];
