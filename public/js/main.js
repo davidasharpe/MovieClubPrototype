@@ -5,11 +5,16 @@ $(document).ready(function(){
   var maxField = 10; //Input fields increment limitation
 
   var fieldHTML = '<div class="field">' +
-                  '<a href="javascript:void(0);" class="remove_button"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a>' +
-                  '<select class="form-control">' +
-                  '<option value="select">select</option>';
-
-  var x = 1; //Initial field counter is 1
+                  '<a href="javascript:void(0);" class="remove_button">' + 
+                  'span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a>';
+  
+  var directors[];
+  var producers[];
+  var actors[];
+  
+  var d = 1; //Initial field counter is 1
+  var p = 1;
+  var a = 1;
 
 /*
   $(addButton).click(function(){ //Once add button is clicked
@@ -23,10 +28,12 @@ $(document).ready(function(){
 // Add director field
 
   $('.director').on('click', '.add_button', function(e) { //Once add button is clicked
-    if(x < maxField){ //Check maximum number of input fields
-      x++; //Increment field counter
-    }
-/*      $.ajax({
+    if(d < maxField){ //Check maximum number of input fields
+      d++; //Increment field counter
+      fieldHTML += '<select class="form-control" name="' + director[d] +'">' +                
+                   '<option value="">select</option>';
+      
+        $.ajax({
         method: 'GET',
         url: '../../includes/get_directors.php'
         }).done.(function(data){
@@ -37,10 +44,10 @@ $(document).ready(function(){
         fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';
         });
       });
-*/
+
     fieldHTML += '</select></div>';
     $(this).parent('div').append(fieldHTML); // Add field html
-
+    }
   });
 
   $('.director').on('click', '.remove_button', function(e){ //Once remove button is clicked
