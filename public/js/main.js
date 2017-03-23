@@ -30,7 +30,7 @@ $(document).ready(function(){
   $('.director').on('click', '.add_button', function(e) { //Once add button is clicked
     if(d < maxField){ //Check maximum number of input fields
       d++; //Increment field counter
-      fieldHTML += '<select class="form-control" name="' + director[d] +'">' +                
+      fieldHTML += '<select class="form-control" name="' + directors[d] +'">' +                
                    '<option value="">select</option>';
       
         $.ajax({
@@ -45,43 +45,68 @@ $(document).ready(function(){
         });
       });
 
-    fieldHTML += '</select></div>';
-    $(this).parent('div').append(fieldHTML); // Add field html
+      fieldHTML += '</select></div>';
+      $(this).parent('div').append(fieldHTML); // Add field html
     }
   });
 
   $('.director').on('click', '.remove_button', function(e){ //Once remove button is clicked
       e.preventDefault();
       $(this).parent('div').remove(); //Remove field html
-      x--; //Decrement field counter
+      d--; //Decrement field counter
   });
 
 // Add producer field
 
   $('.producer').on('click', '.add_button', function(e) { //Once add button is clicked
     if(x < maxField){ //Check maximum number of input fields
-      x++; //Increment field counter
+      p++; //Increment field counter
 
-      fieldHTML += '</select></div>';
+      fieldHTML += '<select class="form-control" name="' + producers[p] +'">' +                                   
+                   '<option value="">select</option>';              
+        $.ajax({        
+        method: 'GET',        
+        url: '../../includes/get_producers.php'        
+        }).done.(function(data){
+                     
+        var result = $.parseJSON(data);
+                     
+        $.each(result, function(key, value){        
+        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';        
+        });      
+     });
+      
+    fieldHTML += '</select></div>';
 
-      $(this).parent('div').append(fieldHTML); // Add field html
+    $(this).parent('div').append(fieldHTML); // Add field html
     }
   });
 
   $('.producer').on('click', '.remove_button', function(e){ //Once remove button is clicked
       e.preventDefault();
       $(this).parent('div').remove(); //Remove field html
-      x--; //Decrement field counter
+      p--; //Decrement field counter
   });
 
 // Add actor field
 
   $('.actor').on('click', '.add_button', function(e) { //Once add button is clicked
     if(x < maxField){ //Check maximum number of input fields
-      x++; //Increment field counter
+      a++; //Increment field counter
 
-      fieldHTML += '</select></div>';
-
+      fieldHTML += '</select></div>';fieldHTML += '<select class="form-control" name="' + actors[a] +'">' +                                   '<option value="">select</option>';              
+        $.ajax({        
+        method: 'GET',        
+        url: '../../includes/get_actors.php'        
+        }).done.(function(data){        
+        var result = $.parseJSON(data);        
+          
+        $.each(result, function(key, value){        
+      
+        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';        
+        });      
+      });
+      
       $(this).parent('div').append(fieldHTML); // Add field html
     }
   });
@@ -89,7 +114,7 @@ $(document).ready(function(){
   $('.actor').on('click', '.remove_button', function(e){ //Once remove button is clicked
       e.preventDefault();
       $(this).parent('div').remove(); //Remove field html
-      x--; //Decrement field counter
+      a--; //Decrement field counter
   });
 
 
