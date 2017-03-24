@@ -6,4 +6,29 @@ $('#brand').change(function(){ 
     });  
   });
 });
+  
+  $(.'director').on('click', '.add_button', function(e) {
+    e.preventDefault();
+    
+    $.ajax({
+    
+      
+    
+    
+    
+    });
+    
+    
+    
+  }
+                    
+  
+ 
+    
+    
+    
+    
+  });
+  
+  
 
