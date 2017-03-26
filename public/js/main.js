@@ -40,9 +40,20 @@ ajax =  $.ajax({   
         dataType: "json"}).done(function() {
           $( this ).append(data)
           alert(data);
+    
+        var result = JSON.Parse(data);
+  
+        
+  
+  
         });
 
   fieldHTML += "<option value=''>" + ajax +  "</option>";
+  
+  
+  
+  
+  
 
   return fieldHTML;
 
