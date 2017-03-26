@@ -4,17 +4,23 @@ $(document).ready(function(){
 
   var maxField = 10; //Input fields increment limitation
 
-  var fieldHTML = '<div class="field">' +
-                  '<a href="javascript:void(0);" class="remove_button">' +
-                  'span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a>';
+  var fieldHTML = "<div class='field'>" +
+                  "<a class='remove_button'>" +
+                  "<span class='glyphicon glyphicon-minus-sign' aria-hidden='true'></span></a>" +
+                  "<select class='form-control'>" +
+                  "<option value=''>select</option>";
 
-  var directors[];
-  var producers[];
-  var actors[];
+  var fieldHTMLReset = "<div class='field'>" +
+                       "<a class='remove_button'>" +
+                       "<span class='glyphicon glyphicon-minus-sign' aria-hidden='true'></span></a>" +
+                       "<select class='form-control'>" +
+                       "<option value=''>select</option>";
 
   var d = 1; //Initial field counter is 1
   var p = 1;
   var a = 1;
+
+  var table = "";
 
 /*
   $(addButton).click(function(){ //Once add button is clicked
@@ -25,26 +31,36 @@ $(document).ready(function(){
   });
 */
 
+function getAjax(table){
+
+ajax =  $.ajax({   
+        type: "GET",   
+        url: "js/test.php",   
+        data: {name: table},
+        dataType: "json"}).done(function() {
+          $( this ).append(data)
+          alert(data);
+        });
+
+  fieldHTML += "<option value=''>" + ajax +  "</option>";
+
+  return fieldHTML;
+
+}
+
 // Add director field
 
   $('.director').on('click', '.add_button', function(e) { //Once add button is clicked
     if(d < maxField){ //Check maximum number of input fields
       d++; //Increment field counter
-      fieldHTML += '<select class="form-control" name="' + directors[d] +'">' +               
-                   '<option value="">select</option>';    
-        $.ajax({
-        method: 'GET',
-        url: '../../includes/get_directors.php'
-        }).done.(function(data){
 
-        var result = $.parseJSON(data);
+      getAjax('directors');
 
-        $.each(result, function(key, value){
-        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';
-        });
-      });
-      fieldHTML += '</select></div>';
-      $(this).parent('div').append(fieldHTML); // Add field html
+      fieldHTML += "</select></div>";
+
+      $(this).parent('div').append(fieldHTML); // Add field html
+
+      fieldHTML = fieldHTMLReset;
     }
   });
 
@@ -57,26 +73,16 @@ $(document).ready(function(){
 // Add producer field
 
   $('.producer').on('click', '.add_button', function(e) { //Once add button is clicked
-    if(x < maxField){ //Check maximum number of input fields
+    if(p < maxField){ //Check maximum number of input fields
       p++; //Increment field counter
 
-      fieldHTML += '<select class="form-control" name="' + producers[p] +'">' +                                  
-                   '<option value="">select</option>';             
-        $.ajax({       
-        method: 'GET',       
-        url: '../../includes/get_producers.php'       
-        }).done.(function(data){
+      getAjax('producers');
 
-        var result = $.parseJSON(data);
+      fieldHTML += "</select></div>";
 
-        $.each(result, function(key, value){       
-        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';       
-        });     
-     });
+      $(this).parent('div').append(fieldHTML); // Add field html
 
-    fieldHTML += '</select></div>';
-
-    $(this).parent('div').append(fieldHTML); // Add field html
+      fieldHTML = fieldHTMLReset;
     }
   });
 
@@ -89,23 +95,16 @@ $(document).ready(function(){
 // Add actor field
 
   $('.actor').on('click', '.add_button', function(e) { //Once add button is clicked
-    if(x < maxField){ //Check maximum number of input fields
+    if(a < maxField){ //Check maximum number of input fields
       a++; //Increment field counter
 
-      fieldHTML += '</select></div>';fieldHTML += '<select class="form-control" name="' + actors[a] +'">' +                                   '<option value="">select</option>';             
-        $.ajax({       
-        method: 'GET',       
-        url: '../../includes/get_actors.php'       
-        }).done.(function(data){       
-        var result = $.parseJSON(data);       
+      getAjax('actors');
 
-        $.each(result, function(key, value){       
+      fieldHTML += "</select></div>";
 
-        fieldHTML += '<option>' + value['FirstName'] + value['LastName'] + '</option>';       
-        });     
-      });
-      
       $(this).parent('div').append(fieldHTML); // Add field html
+
+      fieldHTML = fieldHTMLReset;
     }
   });
 
@@ -114,21 +113,6 @@ $(document).ready(function(){
       $(this).parent('div').remove(); //Remove field html
       a--; //Decrement field counter
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

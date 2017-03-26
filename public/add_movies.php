@@ -46,11 +46,11 @@
     $form_errors = false;
 
     if(isblank($title) || isblank($release_date) || isblank($running_time) || isblank($genre) || isblank($distributor) || isblank($directors) || isblank($producers) || isblank($actors)){$form_errors = true;}
-    
- 
-   
+
+
+
     if($form_errors = false){
-    
+
     $query = "INSERT INTO movies
               (Title, ReleaseDate, RunningTime, Genre, Distributor)
               VALUES ('{$title}', '{$release_date}', '{$running_time}', '{$genre}', '{$distributor}')";
@@ -142,7 +142,7 @@
               <div class="director">
                 <div class="field">
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
-                  <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                  <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                   <select class="form-control" name="directors[0]">
                     <option value="">select</option>
                       <?php
@@ -163,7 +163,7 @@
           <div class="col-sm-5">
             <div class="producer">
               <div class="field">
-                <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <select class="form-control" name="producers[0]">
                   <option value="">select</option>
                   <?php
@@ -216,7 +216,7 @@
           <div class="col-sm-5">
             <div class="actor">
               <div class="field">
-                <a href="javascript:void(0);" class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <select class="form-control" name="actors[0]">
                   <option value="">select</option>
                   <?php

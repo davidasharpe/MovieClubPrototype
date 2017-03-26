@@ -4,6 +4,10 @@
 
   $result_array = array();
 
+  
+
+
+
   $query = select_2col('directors', 'FirstName', 'LastName', 'FirstName');
 
   $result = mysqli_query($connection, $query);
