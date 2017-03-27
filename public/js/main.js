@@ -36,8 +36,8 @@ $.ajax({   
         type: "GET",   
         url: "js/test.php",   
         data: {name: table},
-        success: function(response){
-          var result = JSON.parse(response);
+        success: function($output_array){
+          var result = JSON.parse($output_array);
           $.each( result, function( key, value ) {
             fieldHTML += "<option>" + result[value] + "</option>";
             $(this).parent('div').append(fieldHTML); // Add field html 
