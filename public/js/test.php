@@ -9,16 +9,15 @@ $query = select_concat('directors', 'FirstName', 'LastName', 'FullName');
 
 $result = mysqli_query($connection, $query);
 
-echo "<select>"
+$output_array = array();
 
-while ($directors = mysqli_fetch_assoc($result)){
+$response =  while ( $row = mysqli_fetch_assoc($result)){
+  array_push($out_array, $row);
   echo "<option>".$query["FullName"]."</option>";
 });
 
-
-echo "</select>"
-
-echo json_encode($output);
-
+echo json_encode($output_array);
 
 ?>
+
+
