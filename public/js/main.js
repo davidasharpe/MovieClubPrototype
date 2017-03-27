@@ -23,6 +23,9 @@ $(document).ready(function(){
   var table = "";
 
 /*
+
+  https://gist.github.com/zuch/3720842#file-parse-js-L1
+  
   $(addButton).click(function(){ //Once add button is clicked
       if(x < maxField){ //Check maximum number of input fields
           x++; //Increment field counter
