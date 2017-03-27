@@ -31,7 +31,7 @@ $(document).ready(function(){
   });
 */
 
-function getAjax('table'){
+function getAjax(table){
 $.ajax({   
         type: "GET",   
         url: "js/test.php",   
