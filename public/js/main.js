@@ -25,7 +25,7 @@ $(document).ready(function(){
 /*
 
   https://gist.github.com/zuch/3720842#file-parse-js-L1
-  
+
   $(addButton).click(function(){ //Once add button is clicked
       if(x < maxField){ //Check maximum number of input fields
           x++; //Increment field counter
@@ -37,17 +37,16 @@ $(document).ready(function(){
 function getAjax(table){
 $.ajax({   
         type: "GET",   
-        url: "js/test.php",   
+        url: "ajax.php",   
         data: {name: table},
-        success: function($output_array){
-          var result = JSON.parse($output_array);
-          $.each( result, function( key, value ) {
-            fieldHTML += "<option>" + result[value] + "</option>";
-            $(this).parent('div').append(fieldHTML); // Add field html 
-          } 
+        success: function(data){
+          $.each( data, function( key, value ) {
+            fieldHTML += "<option>" + value.FirstName + " " + value.LastName + "</option>";
+            $(this).parent('div').append(fieldHTML); // Add field html
+          });
          },
-         dataType: "json"});
-});
+         dataType: "json"
+       });
 }
 
 // Add director field

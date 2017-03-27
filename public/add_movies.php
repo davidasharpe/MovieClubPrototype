@@ -47,8 +47,6 @@
 
     if(isblank($title) || isblank($release_date) || isblank($running_time) || isblank($genre) || isblank($distributor) || isblank($directors) || isblank($producers) || isblank($actors)){$form_errors = true;}
 
-
-
     if($form_errors = false){
 
     $query = "INSERT INTO movies
@@ -258,5 +256,8 @@
 
 <?php
   include('../includes/footer.php');
+  mysqli_data_seek($result_producer, 1);
+  mysqli_data_seek($result_director, 1);
+  mysqli_data_seek($result_actor, 1);
   mysqli_close($connection);
 ?>

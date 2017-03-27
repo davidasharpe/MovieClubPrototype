@@ -5,7 +5,6 @@
 
   // $query = "SELECT * FROM movies";
 
-
   $query = "SELECT MovieID, Title, ReleaseDate, RunningTime, Genre, Distributor
             FROM movies
             INNER JOIN genres ON movies.GenreID = genres.GenreID
