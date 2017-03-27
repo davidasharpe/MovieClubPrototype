@@ -44,7 +44,6 @@ $.ajax({   
           } 
          },
          dataType: "json"});
-         var result = JSON.Parse(data);
 });
 }
 
