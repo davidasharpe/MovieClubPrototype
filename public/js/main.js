@@ -31,32 +31,21 @@ $(document).ready(function(){
   });
 */
 
-function getAjax(table){
-
-ajax =  $.ajax({   
+function getAjax('table'){
+$.ajax({   
         type: "GET",   
         url: "js/test.php",   
         data: {name: table},
-        dataType: "json"}).done(function() {
-          $( this ).append(data)
-          alert(data);
-    
-        var result = JSON.Parse(data);
-  
-        
-  
-  
-        });
-
-  fieldHTML += "<option value=''>" + ajax +  "</option>";
-  
-  
-  
-  
-  
-
-  return fieldHTML;
-
+        success: function(response){
+          var result = JSON.parse(response);
+          $.each( result, function( key, value ) {
+            fieldHTML += "<option>" + result[value] + "</option>";
+            $(this).parent('div').append(fieldHTML); // Add field html 
+          } 
+         },
+         dataType: "json"});
+         var result = JSON.Parse(data);
+});
 }
 
 // Add director field
@@ -64,13 +53,9 @@ ajax =  $.ajax({   
   $('.director').on('click', '.add_button', function(e) { //Once add button is clicked
     if(d < maxField){ //Check maximum number of input fields
       d++; //Increment field counter
-
       getAjax('directors');
-
       fieldHTML += "</select></div>";
-
       $(this).parent('div').append(fieldHTML); // Add field html
-
       fieldHTML = fieldHTMLReset;
     }
   });
