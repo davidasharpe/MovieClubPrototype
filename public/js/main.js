@@ -6,26 +6,18 @@ $(document).ready(function(){
 
   var fieldHTML = "<div class='field'>" +
                   "<a class='remove_button'>" +
-                  "<span class='glyphicon glyphicon-minus-sign' aria-hidden='true'></span></a>" +
-                  "<select class='form-control'>" +
-                  "<option value=''>select</option>";
+                  "<span class='glyphicon glyphicon-minus-sign' aria-hidden='true'></span></a>";
 
   var fieldHTMLReset = "<div class='field'>" +
                        "<a class='remove_button'>" +
-                       "<span class='glyphicon glyphicon-minus-sign' aria-hidden='true'></span></a>" +
-                       "<select class='form-control'>" +
-                       "<option value=''>select</option>";
-
+                       "<span class='glyphicon glyphicon-minus-sign' aria-hidden='true'></span></a>";
+  
   var d = 1; //Initial field counter is 1
   var p = 1;
   var a = 1;
 
   var table = "";
-  
-  var $directors = new Array();
-  var $producers = new Array();
-  var $actors = new Array();
-  
+
 /* 
 
   https://gist.github.com/zuch/3720842#file-parse-js-L1
@@ -63,8 +55,11 @@ $.ajax({   
   $('.director').on('click', '.add_button', function(e) { //Once add button is clicked
     if(d < maxField){ //Check maximum number of input fields
       d++; //Increment field counter
+      fieldHTML += "<select class='form-control' value='$directors[" + d "]'>" +
+                   "<option value=''>select</option>";
       getAjax('directors');
       fieldHTML += "</select></div>";
+      
       $(this).parent('div').append(fieldHTML); // Add field html
       fieldHTML = fieldHTMLReset;
     }
@@ -81,9 +76,9 @@ $.ajax({   
   $('.producer').on('click', '.add_button', function(e) { //Once add button is clicked
     if(p < maxField){ //Check maximum number of input fields
       p++; //Increment field counter
-
-      getAjax('producers');
-
+      fieldHTML += "<select class='form-control' value='$producers[" + p "]'>" +                   
+                   "<option value=''>select</option>";
+      getAjax('producers');
       fieldHTML += "</select></div>";
 
       $(this).parent('div').append(fieldHTML); // Add field html
@@ -103,9 +98,9 @@ $.ajax({   
   $('.actor').on('click', '.add_button', function(e) { //Once add button is clicked
     if(a < maxField){ //Check maximum number of input fields
       a++; //Increment field counter
-
-      getAjax('actors');
-
+      fieldHTML += "<select class='form-control' value='$actors[" + a "]'>" +                   
+                   "<option value=''>select</option>";
+      getAjax('actors');
       fieldHTML += "</select></div>";
 
       $(this).parent('div').append(fieldHTML); // Add field html
