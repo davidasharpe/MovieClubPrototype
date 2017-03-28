@@ -21,8 +21,12 @@ $(document).ready(function(){
   var a = 1;
 
   var table = "";
-
-/*
+  
+  var $directors = new Array();
+  var $producers = new Array();
+  var $actors = new Array();
+  
+/* 
 
   https://gist.github.com/zuch/3720842#file-parse-js-L1
 
@@ -36,12 +40,17 @@ $(document).ready(function(){
 
 function getAjax(table){
 $.ajax({   
-        type: "GET",   
+        type: "POST",   
         url: "ajax.php",   
         data: {name: table},
+        cache: false,
         success: function(data){
+          var id = "";  
           $.each( data, function( key, value ) {
-            fieldHTML += "<option>" + value.FirstName + " " + value.LastName + "</option>";
+            if(table == "directors"){id = "DirectorID";}
+            else if(table == "producers"){id = "ProducerID";}
+            else if(table == "actors"){id = "ActorID";}
+            fieldHTML += "<option value=" + value.id + ">" + value.FirstName + " " + value.LastName + "</option>";
             $(this).parent('div').append(fieldHTML); // Add field html
           });
          },
