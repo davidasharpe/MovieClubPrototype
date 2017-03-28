@@ -83,7 +83,6 @@
     // Add Producer(s) to new movie  --> single producer only, need to add loop for multiple producers
 
     $producers = $_POST['producers'];
-
     foreach($producers as $producer){
 
       $producer_id = mysqli_real_escape_string($connection, $producer);
@@ -115,6 +114,7 @@
     }
  } else{
     $title = "";
+
     $release_date = "";
     $running_time = "";
     $genre = "";
@@ -144,8 +144,7 @@
               <div class="director">
                 <div class="field">
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
-                  <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                  <select class="form-control" name=$directors[0]>
+                  <select multiple class="form-control" name="directors[]">
                     <option value="">select</option>
                       <?php
                       while ($directors = mysqli_fetch_assoc($result_director)){
@@ -165,8 +164,7 @@
           <div class="col-sm-5">
             <div class="producer">
               <div class="field">
-                <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                <select class="form-control" name=producers[0]>
+                <select multiple class="form-control" name="producers[]">
                   <option value="">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
@@ -218,8 +216,7 @@
           <div class="col-sm-5">
             <div class="actor">
               <div class="field">
-                <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                <select class="form-control" name=actors[0]>
+                <select multiple class="form-control" name="actors[0]">
                   <option value="">select</option>
                   <?php
                   while ($actors = mysqli_fetch_assoc($result_actor)){
