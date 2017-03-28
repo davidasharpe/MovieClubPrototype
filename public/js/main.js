@@ -55,7 +55,7 @@ $.ajax({   
   $('.director').on('click', '.add_button', function(e) { //Once add button is clicked
     if(d < maxField){ //Check maximum number of input fields
       d++; //Increment field counter
-      fieldHTML += "<select class='form-control' value='$directors[" + d "]'>" +
+      fieldHTML += "<select class='form-control' value='$directors[" + d + "]'>" +
                    "<option value=''>select</option>";
       getAjax('directors');
       fieldHTML += "</select></div>";
@@ -76,7 +76,7 @@ $.ajax({   
   $('.producer').on('click', '.add_button', function(e) { //Once add button is clicked
     if(p < maxField){ //Check maximum number of input fields
       p++; //Increment field counter
-      fieldHTML += "<select class='form-control' value='$producers[" + p "]'>" +                   
+      fieldHTML += "<select class='form-control' value='$producers[" + p + "]'>" +                   
                    "<option value=''>select</option>";
       getAjax('producers');
       fieldHTML += "</select></div>";
@@ -98,7 +98,7 @@ $.ajax({   
   $('.actor').on('click', '.add_button', function(e) { //Once add button is clicked
     if(a < maxField){ //Check maximum number of input fields
       a++; //Increment field counter
-      fieldHTML += "<select class='form-control' value='$actors[" + a "]'>" +                   
+      fieldHTML += "<select class='form-control' value='$actors[" + a + "]'>" +                   
                    "<option value=''>select</option>";
       getAjax('actors');
       fieldHTML += "</select></div>";
@@ -123,5 +123,5 @@ $.ajax({   
     $( "#releasedate" ).datepicker();
   });
 
-
 });
+
