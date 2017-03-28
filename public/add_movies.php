@@ -21,6 +21,10 @@
 
   if ((!$result_director) || (!$result_producer ) || (!$result_actor ) || (!$result_genre) || (!$result_distributor )){
     die("Database query failed.");
+    
+  $directors[] = "";
+  $productors[] = "";
+  $actors[] = "";  
 
   if(isset($_POST['submit'])){
 
@@ -63,7 +67,7 @@
 
     $directors = $_POST['directors'];
 
-    foreach ($directors as $$director) {
+    foreach ($directors as $director) {
 
       $director_id = mysqli_real_escape_string($connection, $director);
 
@@ -141,7 +145,7 @@
                 <div class="field">
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
                   <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                  <select class="form-control" name="directors[0]">
+                  <select class="form-control" name=$directors[0]>
                     <option value="">select</option>
                       <?php
                       while ($directors = mysqli_fetch_assoc($result_director)){
@@ -162,7 +166,7 @@
             <div class="producer">
               <div class="field">
                 <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                <select class="form-control" name="producers[0]">
+                <select class="form-control" name=producers[0]>
                   <option value="">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
@@ -215,7 +219,7 @@
             <div class="actor">
               <div class="field">
                 <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                <select class="form-control" name="actors[0]">
+                <select class="form-control" name=actors[0]>
                   <option value="">select</option>
                   <?php
                   while ($actors = mysqli_fetch_assoc($result_actor)){
