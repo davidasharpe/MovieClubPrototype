@@ -22,10 +22,8 @@
   if ((!$result_director) || (!$result_producer ) || (!$result_actor ) || (!$result_genre) || (!$result_distributor )){
     die("Database query failed.");
     
-  $directors[] = "";
-  $productors[] = "";
-  $actors[] = "";  
-
+  // Process form submission  
+    
   if(isset($_POST['submit'])){
 
     // Add new movie
@@ -52,6 +50,8 @@
     if(isblank($title) || isblank($release_date) || isblank($running_time) || isblank($genre) || isblank($distributor) || isblank($directors) || isblank($producers) || isblank($actors)){$form_errors = true;}
 
     if($form_errors = false){
+      
+    $query = insert_5col($movies, $title, $release_date, $running_time, $genre, $distributor);  
 
     $query = "INSERT INTO movies
               (Title, ReleaseDate, RunningTime, Genre, Distributor)
