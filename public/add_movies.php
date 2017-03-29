@@ -51,10 +51,10 @@
 
     if($form_errors = false){
       
-    $query = insert_5col($movies, $title, $release_date, $running_time, $genre, $distributor);  
+    $query = insert_5col('movies', 'Title', 'ReleaseDate', 'RunningTime', 'Genre', 'Distributor' $title, $release_date, $running_time, $genre, $distributor);  
 
     $query = "INSERT INTO movies
-              (Title, ReleaseDate, RunningTime, Genre, Distributor)
+              ('Title', 'ReleaseDate', 'RunningTime', 'Genre', 'Distributor')
               VALUES ('{$title}', '{$release_date}', '{$running_time}', '{$genre}', '{$distributor}')";
 
     $result = mysqli_query($connection, $query);
