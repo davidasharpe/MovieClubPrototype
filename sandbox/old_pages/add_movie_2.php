@@ -22,8 +22,10 @@
   if ((!$result_director) || (!$result_producer ) || (!$result_actor ) || (!$result_genre) || (!$result_distributor )){
     die("Database query failed.");
     
-  // Process form submission  
-    
+  $directors[] = "";
+  $productors[] = "";
+  $actors[] = "";  
+
   if(isset($_POST['submit'])){
 
     // Add new movie
@@ -50,11 +52,9 @@
     if(isblank($title) || isblank($release_date) || isblank($running_time) || isblank($genre) || isblank($distributor) || isblank($directors) || isblank($producers) || isblank($actors)){$form_errors = true;}
 
     if($form_errors = false){
-      
-    $query = insert_5col('movies', 'Title', 'ReleaseDate', 'RunningTime', 'Genre', 'Distributor' $title, $release_date, $running_time, $genre, $distributor);  
 
     $query = "INSERT INTO movies
-              ('Title', 'ReleaseDate', 'RunningTime', 'Genre', 'Distributor')
+              (Title, ReleaseDate, RunningTime, Genre, Distributor)
               VALUES ('{$title}', '{$release_date}', '{$running_time}', '{$genre}', '{$distributor}')";
 
     $result = mysqli_query($connection, $query);
@@ -83,6 +83,7 @@
     // Add Producer(s) to new movie  --> single producer only, need to add loop for multiple producers
 
     $producers = $_POST['producers'];
+
     foreach($producers as $producer){
 
       $producer_id = mysqli_real_escape_string($connection, $producer);
@@ -114,7 +115,6 @@
     }
  } else{
     $title = "";
-
     $release_date = "";
     $running_time = "";
     $genre = "";
@@ -144,7 +144,8 @@
               <div class="director">
                 <div class="field">
                   <!-- this button adds a new select field, so far it is blank, planning on using ajax to load the data dynamically  -->
-                  <select multiple class="form-control" name="directors[]">
+                  <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                  <select class="form-control" name=$directors[0]>
                     <option value="">select</option>
                       <?php
                       while ($directors = mysqli_fetch_assoc($result_director)){
@@ -164,7 +165,8 @@
           <div class="col-sm-5">
             <div class="producer">
               <div class="field">
-                <select multiple class="form-control" name="producers[]">
+                <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                <select class="form-control" name=producers[0]>
                   <option value="">select</option>
                   <?php
                     while ($producers = mysqli_fetch_assoc($result_producer)){
@@ -216,7 +218,8 @@
           <div class="col-sm-5">
             <div class="actor">
               <div class="field">
-                <select multiple class="form-control" name="actors[0]">
+                <a class="add_button" title="Add field"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                <select class="form-control" name=actors[0]>
                   <option value="">select</option>
                   <?php
                   while ($actors = mysqli_fetch_assoc($result_actor)){
