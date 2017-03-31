@@ -14,7 +14,66 @@ function test_query($query_result){
   }
 }
 
-// Database Select Query 
+// Page redirect
+
+
+
+
+
+// View Movie
+
+
+function get_movie($movie_id){
+ global $connection;
+ $query = "SELECT * 
+           FROM movies
+           WHERE MovieID = {$movie_id}
+           ORDER BY Title";
+  $query_result = msqli_query($connection, $query);
+  return $query_result;
+}
+
+function select_all($table, $order){
+  global $connection;
+  $query = "SELECT *
+            FROM {$table}
+            ORDER BY {$order}";
+  $query_result = msqli_query($connection, $query);
+  return $query_result;
+}
+
+function get_producers(){
+  global $connection;
+  $query = "SELECT *
+            FROM producers
+            ORDER BY FirstName";
+  $query_result = mysqli_query($connection, $query);
+  return $query_result;
+}
+function get_actors(){  
+  global $connection;  
+  $query = "SELECT *            
+            FROM actors            
+            ORDER BY FirstName";  
+  $query_result = mysqli_query($connection, $query);  
+  return $query_result;
+}
+
+function select_list_directors(){
+  select_all('directors', 'FirstName');
+  while ($directors = mysqli_fetch_assoc($query_result)){                        
+  echo "<option value=' {$directors["DirectorID"]}'>".$directors["Directors"]."</option>";
+  }
+}
+
+function select_list_producers(){
+  get_producers();
+  
+}
+
+
+
+/ --------------
 
   function select_concat($table, $column1, $column2, $column_name){
     $query_result = "SELECT CONCAT_WS(' ', {$column1}, {$column2}) AS {$column_name}
