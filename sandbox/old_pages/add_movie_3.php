@@ -30,13 +30,27 @@
 
     } else {
       $title = "";
+      $release_date = "";
+      $running_time = "";
+      $genre = "";
+      $distributor = "";
       $result_message = "";
-    }
 
+    }
  ?>
+
  <div class="container">
    <div class="main">
      <div class="starter-template">
+       <pre>
+         <?php echo htmlspecialchars($title)."<br/>";
+               echo htmlspecialchars($release_date)."<br/>";
+               echo htmlspecialchars($running_time)."<br/>";
+               echo htmlspecialchars($genre)."<br/>";
+               echo htmlspecialchars($distributor)."<br/>";
+          ?>
+       </pre>
+
        <h1>Add Movie</h1>
        <form action="add_movie_2.php" method="post" class="form-horizontal">
         <div class="form-group">
@@ -50,7 +64,7 @@
         <div class="form-group">
           <label for="releasedate" class="col-sm-2 control-label">Release Date</label>
           <div class="col-sm-5">
-            <input type="date" class="form-control" name="releasedate">
+            <input type="textbox" class="form-control" name="releasedate">
           </div>
           <div class="col-sm-5">
           </div>
@@ -68,11 +82,7 @@
           <div class="col-sm-5">
             <select class="form-control" name="genre">
               <option value="">select</option>
-                <?php
-                while ($genres = mysqli_fetch_assoc($result_genre)){
-                  echo "<option value='{$genres["GenreID"]}'>".$genres["Genre"]."</option>";
-                }
-                ?>
+                <?php get_genres(); ?>
             </select>
             <br/>
             <a href="add_genre.php" class="link">Add Genre</a>
@@ -85,11 +95,7 @@
           <div class="col-sm-5">
             <select class="form-control" name="distributor">
               <option value="">select</option>
-              <?php
-              while ($distributors = mysqli_fetch_assoc($result_distributor)){
-                echo "<option value='{$distributors["DistributorID"]}'>".$distributors["Distributor"]."</option>";
-              }
-              ?>
+              <?php get_distributors(); ?>
             </select>
             <br/>
             <a href="add_distributor.php" class="link">Add Distributor</a>

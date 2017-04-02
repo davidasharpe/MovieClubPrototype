@@ -1,23 +1,12 @@
 <?php
   require_once('../includes/database.php');
+  require_once('../includes/functions.php');
   include('../includes/header.php');
   // Query database
 
-  // $query = "SELECT * FROM movies";
+  $result_movies="";
 
-  $query = "SELECT MovieID, Title, ReleaseDate, RunningTime, Genre, Distributor
-            FROM movies
-            INNER JOIN genres ON movies.GenreID = genres.GenreID
-            INNER JOIN distributors ON movies.DistributorID = distributors.DistributorID
-            ORDER BY Title ASC";
-
-  $result = mysqli_query($connection, $query);
-  // Test for query
-  if (!$result) {
-    die("Database query failed.");
-  }
-  // Render header
-  require_once('../includes/header.php');
+  list_all_movies();
 
  ?>
  <div class="container">
@@ -35,7 +24,7 @@
         </tr>
          <?php
           // Use returned data (if any)
-          while($row = mysqli_fetch_assoc($result)){
+          while($row = mysqli_fetch_assoc($result_movies)){
             $id = $row["MovieID"];
          ?>
           <tr>
@@ -53,6 +42,13 @@
          ?>
        </table>
      </div>
+     <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#">1</a>
+      <a class="active" href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">&raquo;</a>
+    </div>
 <?php
   include('../includes/footer.php');
 ?>
