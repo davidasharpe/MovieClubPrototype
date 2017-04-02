@@ -39,7 +39,7 @@
         <div class="form-group">
           <label for="firstName" class="col-sm-2 control-label">First Name</label>
           <div class="col-sm-5">
-            <input type="texbox" name="first_name" class="form-control" value="<?php echo htmlspecialchars($first_name); ?>">
+            <input type="texbox" name="first_name" id="first_name" class="form-control" value="<?php echo htmlspecialchars($first_name); ?>">
           </div>
           <div class="col-sm-5">
           </div>
@@ -47,7 +47,7 @@
         <div class="form-group">
           <label for="lastName" class="col-sm-2 control-label">Last Name</label>
           <div class="col-sm-5">
-            <input type="texbox" name="last_name" class="form-control" value="<?php echo htmlspecialchars($last_name); ?>">
+            <input type="texbox" name="last_name" id="last_name" class="form-control" value="<?php echo htmlspecialchars($last_name); ?>">
           </div>
           <div class="col-sm-5">
           </div>

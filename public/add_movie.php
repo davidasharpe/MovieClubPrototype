@@ -28,7 +28,7 @@
     if($form_errors == false){
 
       $insert_movie = "INSERT INTO movies
-                      (Title, ReleaseDate, RunningTime, Genre, Distributor)
+                      (Title, ReleaseDate, RunningTime, GenreID, DistributorID)
                       VALUES ('{$title}', '{$release_date}', '{$running_time}', '{$genre}', '{$distributor}')";
       if(mysqli_query($connection, $insert_movie)){
         $movie_id = mysqli_insert_id($connection);
@@ -52,7 +52,7 @@
         // Add Actor(s) to new movie
         foreach($actors as $actor){
           $insert_actor = "INSERT INTO actor_movie
-                    (ActorID, MovieId)
+                    (ActorID, MovieID)
                     VALUES ('$actor', '{$movie_id}')";
           mysqli_query($connection, $insert_actor);
         }
@@ -75,16 +75,31 @@
          <?php if(isset($running_time)) { echo $running_time."<br/>"; } ?>
          <?php if(isset($genre)) { echo $genre."<br/>"; } ?>
          <?php if(isset($distributor)) { echo $distributor."<br/>"; } ?>
-         <?php if(isset($directors)) { echo $genre."<br/>"; } ?>
-         <?php if(isset($producers)) { echo $genre."<br/>"; } ?>
-         <?php if(isset($actors)) { echo $genre."<br/>"; } ?>
+       </pre>
+       <pre>
+         <?php if(isset($directors)) {
+            foreach ($directors as $director){
+              echo "Director: ".$director."<br/>";
+            }
+           }
+         ?>
+         <?php if(isset($producers)) {
+            foreach($producers as $producer){
+              echo "Producer: ".$producer."<br/>";
+            }
+           }
+         ?>
+         <?php if(isset($actors)) {
+           foreach($actors as $actor){
+             echo "Actor: ".$actor."<br/>"; }
+           }
+         ?>
        </pre>
        <form name="add_movie" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
         <div class="form-group">
           <label for="title" class="col-sm-2 control-label">Title</label>
           <div class="col-sm-5">
-            <input type="texbox" class="form-control" id="title" name="title"
-            value="<?php if(isset($title)) { echo htmlspecialchars($title); } ?>" data-validation="required">
+            <input type="texbox" class="form-control" id="title" name="title" value="<?php if(isset($title)) { echo htmlspecialchars($title); } ?>" data-validation="required">
           </div>
           <div class=col-sm-5>
           </div>
@@ -110,8 +125,7 @@
           <div class="col-sm-5">
             <div class="producer">
               <div class="field">
-                <select multiple class="form-control" id="producers" name="producers[]"
-                data-validation="required">
+                <select multiple class="form-control" id="producers" name="producers[]" data-validation="required">
                   <?php get_producers(); ?>
                 </select>
               </div>
@@ -125,8 +139,7 @@
         <div class="form-group">
           <label for="release_date" class="col-sm-2 control-label">Release Date</label>
           <div class="col-sm-5">
-            <input type="date" class="form-control" id="release_date" name="release_date"
-            data-validation="required date" data-validation-format="yyyy-mm-dd">
+            <input type="date" class="form-control" id="release_date" name="release_date" data-validation="required date" data-validation-format="yyyy-mm-dd">
           </div>
           <div class="col-sm-5">
           </div>
@@ -134,8 +147,7 @@
         <div class="form-group">
           <label for="running_time" class="col-sm-2 control-label">Running Time</label>
           <div class="col-sm-5">
-            <input type="texbox" class="form-control" id="running_time" name="running_time"
-            data-validation="required number" value="<?php if(isset($running_time)){ echo htmlspecialchars($running_time); } ?>">
+            <input type="texbox" class="form-control" id="running_time" name="running_time" value="<?php if(isset($running_time)){ echo htmlspecialchars($running_time); } ?>" data-validation="required number">
           </div>
           <div class="col-sm-5">
           </div>
@@ -143,8 +155,7 @@
         <div class="form-group">
           <label for="genre" class="col-sm-2 control-label">Genre</label>
           <div class="col-sm-5">
-            <select class="form-control" id="genre" name="genre"
-            data-validation="required">
+            <select class="form-control" id="genre" name="genre" data-validation="required">
               <option value="">select</option>
                 <?php get_genres(); ?>
             </select>
@@ -159,8 +170,7 @@
           <div class="col-sm-5">
             <div class="actor">
               <div class="field">
-                <select multiple class="form-control" id="actors" name="actors[]"
-                data-validation="required">
+                <select multiple class="form-control" id="actors" name="actors[]" data-validation="required">
                   <?php get_actors(); ?>
                 </select>
               </div>
@@ -174,8 +184,7 @@
         <div class="form-group">
           <label for="distributor" class="col-sm-2 control-label">Distributor</label>
           <div class="col-sm-5">
-            <select class="form-control" id="distributor" name="distributor"
-            data-validation="required">
+            <select class="form-control" id="distributor" name="distributor" data-validation="required">
               <option value="">select</option>
               <?php get_distributors(); ?>
             </select>
@@ -187,7 +196,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" name="submit" class="btn btn-success">Submit</button>
           </div>
         </div>
       </form>
