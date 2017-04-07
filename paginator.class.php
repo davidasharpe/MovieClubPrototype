@@ -32,10 +32,10 @@
       $query = $this -> _query;
     } else{
       
-      $query = $this -> _query." LIMIT ".(($this -> _page - 1) * $this -  )
-    
-    
+      $query = $this -> _query." LIMIT ".(($this -> _page - 1) * $this -> _limit).", $this -> _limit"; 
     }
+    
+    $rs = $this -> _connection -> query($query);
     
   }
 
