@@ -1,7 +1,7 @@
 <?php 
   
   // https://code.tutsplus.com/tutorials/how-to-paginate-data-with-php--net-2928
-
+  // https://www.startutorial.com/articles/view/php-pagination-tutorial
 
   class Paginator{
     
