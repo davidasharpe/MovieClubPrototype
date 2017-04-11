@@ -1,7 +1,5 @@
 <?php
-
 // Test Query Result on Insert
-
 function test_query($query_result){
   if ($query_result) {
     $message = "New record successfully added to the database";
@@ -13,20 +11,17 @@ function test_query($query_result){
     return $message;
   }
 }
-
 // Test Query Result on Select
-
 function test_select_query($query_result){
   if(!$query_result){
     die("Database query failed.");
   }
 }
-
-// Movies
-
+// List all movies
 function list_all_movies(){
   global $connection;
   global $result_movies;
+
   $query_movies = "SELECT MovieID, Title, ReleaseDate, RunningTime, Genre, Distributor
                    FROM movies
                    INNER JOIN genres ON movies.GenreID = genres.GenreID
@@ -34,11 +29,10 @@ function list_all_movies(){
                    ORDER BY Title ASC";
   $result_movies = mysqli_query($connection, $query_movies);
   test_select_query($query_movies);
+
   return $result_movies;
 }
-
 // View Movie
-
 function list_movie($movie_id){
   global $connection;
   $query_movie = "SELECT Title, ReleaseDate, RunningTime, Genre, Distributor
@@ -55,7 +49,7 @@ function list_movie($movie_id){
    echo "</tr>";
   }
 }
-
+// List directors
 function list_directors($movie_id){
   global $connection;
   $query_director = "SELECT FirstName, LastName
@@ -68,7 +62,7 @@ function list_directors($movie_id){
     echo "<li>".$directors["FirstName"]." ".$directors["LastName"]."</li>";
   }
 }
-
+// List producers
 function list_producers($movie_id){
   global $connection;
   $query_producer = "SELECT FirstName, LastName
@@ -81,7 +75,7 @@ function list_producers($movie_id){
     echo "<li>".$producers["FirstName"]." ".$producers["LastName"]."</li>";
   }
 }
-
+// List actors
 function list_actors($movie_id){
   global $connection;
   $query_actor = "SELECT FirstName, LastName
@@ -94,9 +88,7 @@ function list_actors($movie_id){
     echo "<li>".$actors["FirstName"]." ".$actors["LastName"]."</li>";
   }
 }
-
 // Add Movies
-
 function select_all($table, $order){
   global $connection;
   global $query_result;
@@ -107,7 +99,7 @@ function select_all($table, $order){
   test_select_query($query_result);
   return $query_result;
 }
-
+// Get directors
 function get_directors(){
   global $connection;
   $query = "SELECT *
@@ -120,7 +112,7 @@ function get_directors(){
     }
   mysqli_free_result($result_director);
 }
-
+// Get producers
 function get_producers(){
   global $connection;
   $query = "SELECT *
@@ -133,7 +125,7 @@ function get_producers(){
   }
   mysqli_free_result($result_producer);
 }
-
+// Get actors
 function get_actors(){
   global $connection;
   $query = "SELECT *
@@ -146,7 +138,7 @@ function get_actors(){
   }
   mysqli_free_result($result_actor);
 }
-
+// Get genres
 function get_genres(){
   global $connection;
   global $query_result;
@@ -159,7 +151,7 @@ function get_genres(){
     echo "<option value='{$genres["GenreID"]}'>".$genres["Genre"]."</option>";
   }
 }
-
+// distributors
 function get_distributors(){
   global $connection;
   global $query_result;

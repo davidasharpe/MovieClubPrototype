@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2017 at 09:07 AM
+-- Generation Time: Apr 11, 2017 at 12:23 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -74,7 +74,11 @@ INSERT INTO `actors` (`ActorID`, `FirstName`, `LastName`) VALUES
 (35, 'Naomie', 'Harris\r'),
 (36, 'Christopher', 'Eccleston\r'),
 (37, 'Megan', 'Burns\r'),
-(38, 'Brendan', 'Gleeson');
+(38, 'Brendan', 'Gleeson'),
+(39, 'Tom', 'Hanks'),
+(40, 'Edward', 'Burns'),
+(41, 'Matt', 'Damon'),
+(42, 'Tom', 'Sizemore');
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,11 @@ INSERT INTO `actor_movie` (`Actor_MovieID`, `ActorID`, `MovieID`) VALUES
 (35, 35, 9),
 (36, 36, 9),
 (37, 37, 9),
-(38, 38, 9);
+(38, 38, 9),
+(39, 40, 12),
+(40, 41, 12),
+(41, 39, 12),
+(42, 42, 12);
 
 -- --------------------------------------------------------
 
@@ -181,7 +189,9 @@ INSERT INTO `directors` (`DirectorID`, `FirstName`, `LastName`) VALUES
 (24, 'George', 'Miller'),
 (25, 'Mel', 'Gibson'),
 (26, 'Wes', 'Anderson'),
-(27, 'Terrence', 'Malick');
+(27, 'Terrence', 'Malick'),
+(28, 'Francis Ford', 'Copola'),
+(29, 'Joel', 'Coen');
 
 -- --------------------------------------------------------
 
@@ -222,7 +232,8 @@ INSERT INTO `director_movie` (`Director_MovieID`, `DirectorID`, `MovieID`) VALUE
 (9, 9, 6),
 (10, 10, 7),
 (11, 11, 8),
-(12, 11, 9);
+(12, 11, 9),
+(13, 17, 12);
 
 -- --------------------------------------------------------
 
@@ -246,7 +257,8 @@ INSERT INTO `distributors` (`DistributorID`, `Distributor`) VALUES
 (4, 'Warner Bros.\r'),
 (5, 'Gramercy Pictures\r'),
 (6, 'TriStar Pictures\r'),
-(7, 'Fox Searchlight Pictures');
+(7, 'Fox Searchlight Pictures'),
+(9, 'DreamWorks Pictures');
 
 -- --------------------------------------------------------
 
@@ -269,7 +281,9 @@ INSERT INTO `genres` (`GenreID`, `Genre`) VALUES
 (3, 'Science Fiction\r'),
 (4, 'Comedy\r'),
 (5, 'Biopic\r'),
-(6, 'Horror');
+(6, 'Horror'),
+(7, 'War'),
+(8, 'Comedy');
 
 -- --------------------------------------------------------
 
@@ -305,24 +319,24 @@ CREATE TABLE `movies` (
   `ReleaseDate` date DEFAULT NULL,
   `RunningTime` int(10) DEFAULT NULL,
   `GenreID` int(10) UNSIGNED DEFAULT NULL,
-  `DistributorID` int(10) UNSIGNED DEFAULT NULL,
-  `MemberID` int(10) UNSIGNED DEFAULT NULL
+  `DistributorID` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `movies`
 --
 
-INSERT INTO `movies` (`MovieID`, `Title`, `ReleaseDate`, `RunningTime`, `GenreID`, `DistributorID`, `MemberID`) VALUES
-(1, 'The Way', '2010-09-10', 121, 1, 1, 1),
-(2, '1 Giant Leap', '2002-09-10', 155, 2, 2, 1),
-(3, 'Samsara', '2011-09-11', 99, 2, 3, 1),
-(4, 'Blade Runner', '1982-06-25', 116, 3, 4, 1),
-(5, 'The Matrix', '1999-03-31', 136, 3, 4, 1),
-(6, 'The Big Lebowski', '1998-03-06', 119, 4, 5, 1),
-(7, 'Cadillac Records', '2008-12-05', 109, 5, 6, 1),
-(8, 'Slumdog Millionaire', '2008-08-30', 120, 1, 1, 1),
-(9, '28 Days Later', '2002-11-01', 113, 6, 7, 1);
+INSERT INTO `movies` (`MovieID`, `Title`, `ReleaseDate`, `RunningTime`, `GenreID`, `DistributorID`) VALUES
+(1, 'The Way', '2010-09-10', 121, 1, 1),
+(2, '1 Giant Leap', '2002-09-10', 155, 2, 2),
+(3, 'Samsara', '2011-09-11', 99, 2, 3),
+(4, 'Blade Runner', '1982-06-25', 116, 3, 4),
+(5, 'The Matrix', '1999-03-31', 136, 3, 4),
+(6, 'The Big Lebowski', '1998-03-06', 119, 4, 5),
+(7, 'Cadillac Records', '2008-12-05', 109, 5, 6),
+(8, 'Slumdog Millionaire', '2008-08-30', 120, 1, 1),
+(9, '28 Days Later', '2002-11-01', 113, 6, 7),
+(12, 'Saving Private Ryan', '1998-07-24', 169, 7, 9);
 
 -- --------------------------------------------------------
 
@@ -369,7 +383,12 @@ INSERT INTO `producers` (`ProducerID`, `FirstName`, `LastName`) VALUES
 (12, 'Sofia', 'Sondervan\r'),
 (13, 'Andrew', 'Lack\r'),
 (14, 'Christian', 'Colson\r'),
-(15, 'Andrew', 'Macdonald');
+(15, 'Andrew', 'Macdonald'),
+(16, 'Ian', 'Bryce'),
+(17, 'Mark', 'Gordon'),
+(18, 'Gary', 'Levinsohn'),
+(19, 'Steven', 'Spielberg'),
+(20, 'Ethan', 'Coen');
 
 -- --------------------------------------------------------
 
@@ -413,7 +432,11 @@ INSERT INTO `producer_movie` (`Producer_MovieID`, `ProducerID`, `MovieID`) VALUE
 (12, 12, 7),
 (13, 13, 7),
 (14, 14, 8),
-(15, 15, 9);
+(15, 15, 9),
+(16, 18, 12),
+(17, 16, 12),
+(18, 17, 12),
+(19, 19, 12);
 
 -- --------------------------------------------------------
 
@@ -498,8 +521,7 @@ ALTER TABLE `members`
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`MovieID`),
   ADD KEY `GenreID` (`GenreID`),
-  ADD KEY `DistributorID` (`DistributorID`),
-  ADD KEY `MemberID` (`MemberID`);
+  ADD KEY `DistributorID` (`DistributorID`);
 
 --
 -- Indexes for table `movie_rating`
@@ -531,32 +553,32 @@ ALTER TABLE `producer_movie`
 -- AUTO_INCREMENT for table `actors`
 --
 ALTER TABLE `actors`
-  MODIFY `ActorID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ActorID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `actor_movie`
 --
 ALTER TABLE `actor_movie`
-  MODIFY `Actor_MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `Actor_MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
-  MODIFY `DirectorID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `DirectorID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `director_movie`
 --
 ALTER TABLE `director_movie`
-  MODIFY `Director_MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Director_MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `distributors`
 --
 ALTER TABLE `distributors`
-  MODIFY `DistributorID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `DistributorID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `GenreID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `GenreID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `members`
 --
@@ -566,7 +588,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `movie_rating`
 --
@@ -576,12 +598,12 @@ ALTER TABLE `movie_rating`
 -- AUTO_INCREMENT for table `producers`
 --
 ALTER TABLE `producers`
-  MODIFY `ProducerID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ProducerID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `producer_movie`
 --
 ALTER TABLE `producer_movie`
-  MODIFY `Producer_MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Producer_MovieID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- Constraints for dumped tables
 --
@@ -605,8 +627,7 @@ ALTER TABLE `director_movie`
 --
 ALTER TABLE `movies`
   ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`GenreID`) REFERENCES `genres` (`GenreID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`DistributorID`) REFERENCES `distributors` (`DistributorID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `movies_ibfk_3` FOREIGN KEY (`MemberID`) REFERENCES `members` (`MemberID`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`DistributorID`) REFERENCES `distributors` (`DistributorID`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `movie_rating`
