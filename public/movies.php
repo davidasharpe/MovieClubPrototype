@@ -1,10 +1,20 @@
 <?php
+  require_once('../includes/session.php');
   require_once('../includes/database.php');
   require_once('../includes/functions.php');
+
+  $active_page = "movies";
+
   include('../includes/header.php');
   // Query database
 
   $result_movies="";
+
+  if (isset($_GET['pageno'])) {
+   $pageno = $_GET['pageno'];
+  } else {
+   $pageno = 1;
+  } // if
 
   list_all_movies();
 

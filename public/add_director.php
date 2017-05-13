@@ -1,7 +1,14 @@
 <?php
-  require_once('../includes/database.php');
+  require_once('../includes/session.php');
   require_once('../includes/functions.php');
+  if($logged_in == false){
+    redirect_to('login.php');
+  }
+  require_once('../includes/database.php');
   require_once('../includes/validation.php');
+
+  $active_page = "add_movie";
+
   include('../includes/header.php');
   //Check form submit
   if (isset($_POST['submit'])){
@@ -31,7 +38,7 @@
                   (FirstName, LastName)
                   VALUES ('{$first_name}','{$last_name}')";
         $result = mysqli_query($connection, $query);
-        test_query($result);
+        test_insert_query($result);
         $success_message = "<p class='bg-success'>New director successfully added to database</p>";
       }
   } else {
@@ -55,7 +62,9 @@
               <?php if(isset($error_message)) { echo $error_message; } ?>
             </div>
           </div>
-          <label for="firstName" class="col-sm-2 control-label">First Name</label>
+        </div>
+        <div class="form-group">
+          <label for="first_name" class="col-sm-2 control-label">First Name</label>
           <div class="col-sm-5">
             <input type="texbox" name="first_name" id="first_name" class="form-control" data-validation="required" value="<?php echo htmlspecialchars($first_name); ?>">
           </div>
@@ -63,7 +72,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+          <label for="last_name" class="col-sm-2 control-label">Last Name</label>
           <div class="col-sm-5">
             <input type="texbox" name="last_name" id="last_name" class="form-control" data-validation="required" value="<?php echo htmlspecialchars($last_name); ?>">
           </div>

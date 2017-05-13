@@ -1,7 +1,14 @@
 <?php
-  require_once('../includes/database.php');
+  require_once('../includes/session.php');
   require_once('../includes/functions.php');
+  if($logged_in == false){
+    redirect_to('login.php');
+  }
+  require_once('../includes/database.php');
   require_once('../includes/validation.php');
+
+  $active_page = "add_movie";
+
   include('../includes/header.php');
 
   //Check form submit

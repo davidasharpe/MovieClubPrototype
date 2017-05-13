@@ -1,7 +1,11 @@
+/* Index */
 
+#user_preferences{
+  margin-top: 50px;
+}
 
 .main{
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .form{
@@ -66,10 +70,8 @@
   margin-left: 15px;
 }
 
-
-
 .link{
-  padding: 10px 0 10px 16px;;
+  padding: 10px 0 10px 16px;
 }
 
 .list{
@@ -78,6 +80,32 @@
   list-style: none;
   left: -40px;
 }
+
+.movie_image{
+  width:50%;
+  float:right;
+}
+
+.rating{
+  text-align: left;
+}
+
+textarea{
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+.radio-inline{
+  padding-right: 5px;
+  padding-bottom: 12px;
+}
+
+/* ------------------------------ */
 
 .pagination a {
     color: black;

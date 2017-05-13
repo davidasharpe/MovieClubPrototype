@@ -58,6 +58,8 @@ function record_exits($query){
   // Check if record already exists
   if (mysqli_num_rows($query_result) > 0) {
       return true;
+
+      debug_to_console($query_result);
   }
   // Release returned data
   mysqli_free_result($query_result);
@@ -70,4 +72,43 @@ function record_exits($query){
           die("Database query failed. " . mysqli_error($connection));
       }
   }
+  // Debug to console
+  function debug_to_console($data) {
+      if(is_array($data) || is_object($data))
+  	{
+  		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+  	} else {
+  		echo("<script>console.log('PHP: ".$data."');</script>");
+  	}
+  }
+  // Check email format
+  function email_format($email){
+    global $form_errors;
+    global $error_message;
+    if(!preg_match("/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/", $email)){
+      $error_message .= "<p class='bg-danger'>Email must be a vaild email address.</p>";
+      $form_errors = true;
+    }
+  }
+  // Check password format
+  function password_format($password){
+    global $form_errors;
+    global $error_message;
+    if(!preg_match("/^(?=.*\d).{6,15}$/", $password)){
+      $error_message .= "<p class='bg-danger'>Password must be between 4 and 15 characters long and include at least one number.</p>";
+      $form_errors = true;
+    }
+  }
+
+  function match_passwords($hashed_password, $confirm_password){
+    global $error_message;
+    global $form_errors;
+    if($hashed_password != $confirm_password){
+      $error_message .= "<p class='bg-danger'>Passwords do not match.</p>";
+      $form_errors = true;
+    }
+
+  }
+
+
 ?>

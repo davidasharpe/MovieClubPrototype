@@ -1,7 +1,14 @@
 <?php
-  require_once('../includes/database.php');
+  require_once('../includes/session.php');
   require_once('../includes/functions.php');
+  if($logged_in == false){
+    redirect_to('login.php');
+  }
+  require_once('../includes/database.php');
   require_once('../includes/validation.php');
+
+  $active_page = "add_movie";
+
   include('../includes/header.php');
 
   //Check form submit
@@ -32,7 +39,7 @@
                   (FirstName, LastName)
                   VALUES ('{$first_name}','{$last_name}')";
         $result = mysqli_query($connection, $query);
-        test_query($result);
+        test_insert_query($result);
         $success_message = "<p class='bg-success'>New actor successfully added to database</p>";
       }
     // if post not submitted, return empty values
