@@ -1,7 +1,5 @@
-<?php
-    require_once('../includes/user_preferences.php');
-?>
-
+// Get user preferences
+<?php require_once('../includes/user_preferences.php');?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Movie Club</title>
-
     <!-- Bootstrap Selected Theme -->
     <link href="<?php echo $css ?>" rel="stylesheet">
     <link href="../lib/jquery-ui/jquery-ui.min.css" rel="stylesheet">

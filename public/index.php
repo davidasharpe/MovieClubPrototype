@@ -1,27 +1,25 @@
  <?php
+  // Include session, database & functions
   require_once('../includes/session.php');
   require_once('../includes/database.php');
   require_once('../includes/functions.php');
-
+  // Set active page for navigation
   $active_page = "index";
-
+  // Render header
   include('../includes/header.php');
-
-  // detect form submission
+  // Detect form submission
   if (isset($_POST['submit'])) {
-  // set chosen colour values
+    // Set chosen theme, font size and background values
     $theme = $_POST["theme"];
     $font_size = $_POST["font_size"];
     $background_image = $_POST["background_image"];
-
+    // set cookies
     setcookie("theme", $theme, time()+60*60*24*30);
     setcookie("font_size", $font_size, time()+60*60*24*30);
     setcookie("background_image", $background_image, time()+60*60*24*30);
-
     // reload page so has new cookie variables
     header('Location: index.php');
   }
-
  ?>
  <div class="container">
    <div class="main">

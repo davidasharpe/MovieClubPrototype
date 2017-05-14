@@ -1,14 +1,17 @@
 <?php
+  // Include session & functions
   require_once('../includes/session.php');
   require_once('../includes/functions.php');
+  // Check if user is logged in, if so direct to home page
   if($logged_in == true){
     redirect_to('index.php');
   }
+  // Include database & validation
   require_once('../includes/database.php');
   require_once('../includes/validation.php');
-
+  // Set active page for navigation
   $active_page = "login";
-
+  // Render page header
   include('../includes/header.php');
   //Check form submit
   if (isset($_POST['submit'])){

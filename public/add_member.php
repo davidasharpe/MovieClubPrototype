@@ -1,14 +1,17 @@
 <?php
+  // Include session & functions
   require_once('../includes/session.php');
   require_once('../includes/functions.php');
+  // Check if user is logged in as admin, if not rediect to login page
   if(($logged_in == false) || ($user_type != "admin")){
     redirect_to('login.php');
   }
+  // Include database & validation
   require_once('../includes/database.php');
   require_once('../includes/validation.php');
-
+  // Set active page for navigation
   $active_page = "admin";
-
+  // Render header
   include('../includes/header.php');
   //Check form submit
   if (isset($_POST['submit'])){
@@ -16,7 +19,6 @@
       $form_errors = false;
       $success_message = "";
       $error_message = "";
-
       // Get post values and remove whitespace
       $user_type = $_POST["user_type"];
       $first_name = trim($_POST["first_name"]);
@@ -26,14 +28,12 @@
       $user_name = trim($_POST["user_name"]);
       $password = trim($_POST["password"]);
       $confirm_password = trim($_POST["confirm_password"]);
-
       // Filter input
       $first_name = mysqli_real_escape_string($connection, $first_name);
       $last_name = mysqli_real_escape_string($connection, $last_name);
       $email = mysqli_real_escape_string($connection, $email);
       $phone = mysqli_real_escape_string($connection, $phone);
       $user_name = mysqli_real_escape_string($connection, $user_name);
-
       // Validate fileds
       validate_text($first_name, 'a first name');
       validate_text($last_name, 'a last name');
@@ -42,19 +42,14 @@
       validate_text($user_name, 'a user name');
       validate_text($password, 'a password');
       validate_text($confirm_password, 'same password');
-
       // Check email format
       email_format($email);
-
       // Check password format
       password_format($password);
-
       // Check if password fields match
       match_passwords($password, $confirm_password);
-
       // Encrypt passwords
       $hashed_password = password_encrypt($password);
-
       // Check to see if member exists in database
       $query_member = "SELECT * FROM members WHERE members.UserName = '{$user_name}'";
       test_query($query_member);

@@ -1,9 +1,9 @@
 <?php
-//check is cookie is set
+ // Check is cookie is set
  if (isset($_COOKIE["theme"])) {
-
+   // Get value for theme
    $theme = $_COOKIE["theme"];
-
+   // Set CSS for selected theme
    switch ($theme) {
      case "Cerulean":
         $css = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css";
@@ -61,12 +61,11 @@
     // Else set default
     $css = "../lib/bootstrap/css/bootstrap.min.css";
   }
-
   // Check if cookie is set
   if (isset($_COOKIE["font_size"])){
-
+    // Get value for font-szie
     $font_size = $_COOKIE["font_size"];
-
+    // Set selected font size
     switch ($font_size){
       case "extra_small":
         $font = "100%";
@@ -91,12 +90,11 @@
     // Else set default
     $font = "";
   }
-
   // Check if cookie is set
   if (isset($_COOKIE["background_image"])){
-
+    // Get value for background
     $background_image = $_COOKIE["background_image"];
-
+    // Set selected background
     switch ($background_image) {
       case "cubes":
         $background = "url('../public/images/cubes.jpg')";
@@ -121,5 +119,4 @@
     // Else set default
     $background = "";
   }
-
 ?>

@@ -1,17 +1,18 @@
 <?php
+  // Include session, database, functions & validation
   require_once('../includes/session.php');
   require_once('../includes/database.php');
   require_once('../includes/functions.php');
   require_once('../includes/validation.php');
-
+  // Set active page for navigation
   $active_page = "movies";
-
+  // Render header
   include('../includes/header.php');
-
+  // Get movie id
   $movie_id = $_GET['id'];
-
+  // Set default for movie image
   $movie_image ="";
-
+  // Get movie data
   $query_ratings = "SELECT Rating, Review, UserName
                     FROM movie_rating
                     INNER JOIN members ON members.MemberID = movie_rating.MemberID
@@ -28,6 +29,7 @@
        ?>
        <div class="row col-sm-12"  style="margin-bottom:20px">
          <div class="col-sm-6">
+           <!-- Display movie data -->
             <table class="table">
                 <tr>
                   <td><b>Title</b></td>

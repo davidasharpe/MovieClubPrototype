@@ -1,16 +1,18 @@
 <?php
+  // Include session & functions
   require_once('../includes/session.php');
   require_once('../includes/functions.php');
+    // Check if user is logged in, if not rediect to login page
   if($logged_in == false){
     redirect_to('login.php');
   }
+  // Include database & validation
   require_once('../includes/database.php');
   require_once('../includes/validation.php');
-
+  // Set active page for navigation
   $active_page = "add_movie";
-
+  // Render header
   include('../includes/header.php');
-
   //Check form submit
   if(isset($_POST['submit'])){
     // Initialise variables

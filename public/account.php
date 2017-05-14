@@ -1,29 +1,78 @@
 <?php
+  // Include session & functions
   require_once('../includes/session.php');
   require_once('../includes/functions.php');
+  // Get member id for the logged in user
+  $member_id = $_GET["id"];
+  // Check if user is logged in, if not rediect to login page
   if($logged_in == false){
     redirect_to('login.php');
   }
+  // Check if user is authorised to access account, if not direct to correct member page
+  else if($member_id != $_SESSION["member_id"] && $_SESSION['user_type'] != "admin"){
+          $member_id = $_SESSION["member_id"];
+          redirect_to('account.php?id='.$member_id);
+  }
+  // Include database & validation
   require_once('../includes/database.php');
-
+  require_once('../includes/validation.php');
+  // Set active page for navigation
   $active_page = "account";
-
+  // Render header
   include('../includes/header.php');
-
-  $member_id = $_GET["id"];
-
+  // Set result to default
   $result_member = "";
-
+  // Get member data
   get_member($member_id);
-
   $member = mysqli_fetch_assoc($result_member);
-
   $user_name = $member["UserName"];
   $user_type = $member["UserType"];
   $first_name = $member["FirstName"];
   $last_name = $member["LastName"];
   $email = $member["Email"];
   $phone = $member["Phone"];
+  //Check form submit
+  if (isset($_POST['submit'])){
+      // Initialise variables
+      $form_errors = false;
+      $success_message = "";
+      $error_message = "";
+      // Get post values and remove whitespace
+      $user_type = $_POST["user_type"];
+      $first_name = trim($_POST["first_name"]);
+      $last_name = trim($_POST["last_name"]);
+      $email = trim($_POST["email"]);
+      $phone = trim($_POST["phone"]);
+      // Filter input
+      $first_name = mysqli_real_escape_string($connection, $first_name);
+      $last_name = mysqli_real_escape_string($connection, $last_name);
+      $email = mysqli_real_escape_string($connection, $email);
+      $phone = mysqli_real_escape_string($connection, $phone);
+      // Validate fileds
+      validate_text($first_name, 'a first name');
+      validate_text($last_name, 'a last name');
+      validate_text($email, 'an email');
+      validate_text($phone, 'a phone number');
+      // Check email format
+      email_format($email);
+      // if there are no errors update database
+      if ($form_errors == false){
+        // Upate member details
+        $query = "UPDATE members
+                  SET FirstName = '{$first_name}', LastName = '{$last_name}', Email = '{$email}', Phone = '{$phone}'
+                  WHERE MemberID = '{$member_id}'";
+        $result = mysqli_query($connection, $query);
+        test_insert_query($result);
+        $success_message = "<p class='bg-success'>Member details has been successfully updated</p>";
+      }
+  } else {
+    $first_name = $member["FirstName"];
+    $last_name = $member["LastName"];
+    $email = $member["Email"];
+    $phone = $member["Phone"];
+    $success_message = "";
+    $result = "";
+  }
 ?>
  <div class="container">
    <div class="main">

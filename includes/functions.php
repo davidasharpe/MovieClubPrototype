@@ -152,7 +152,7 @@ function get_genres(){
     echo "<option value='{$genres["GenreID"]}'>".$genres["Genre"]."</option>";
   }
 }
-// distributors
+// Get distributors
 function get_distributors(){
   global $connection;
   global $query_result;
@@ -165,12 +165,11 @@ function get_distributors(){
     echo "<option value='{$distributors["DistributorID"]}'>".$distributors["Distributor"]."</option>";
   }
 }
-
+// Password encryption
 function password_encrypt($password) {
   $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
   return $hash;
 }
-
 // List all members
 function list_all_members(){
   global $connection;
@@ -182,7 +181,7 @@ function list_all_members(){
   test_query($result_members);
   return $result_members;
 }
-
+// Get member
 function get_member($member_id){
   global $connection;
   global $result_member;
@@ -193,7 +192,6 @@ function get_member($member_id){
   test_query($result_member);
   return $result_member;
 }
-
 // List movie ratings
 function list_movie_ratings($movie_id){
   global $connection;
@@ -205,8 +203,4 @@ function list_movie_ratings($movie_id){
   test_query($result_ratings);
   return $result_ratings;
 }
-
-//
-
-
 ?>

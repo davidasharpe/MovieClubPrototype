@@ -99,7 +99,7 @@ function record_exits($query){
       $form_errors = true;
     }
   }
-
+  // Check for matching passwords
   function match_passwords($hashed_password, $confirm_password){
     global $error_message;
     global $form_errors;
@@ -107,8 +107,5 @@ function record_exits($query){
       $error_message .= "<p class='bg-danger'>Passwords do not match.</p>";
       $form_errors = true;
     }
-
   }
-
-
 ?>

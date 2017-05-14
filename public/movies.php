@@ -1,23 +1,22 @@
 <?php
+  // Include session database & functions
   require_once('../includes/session.php');
   require_once('../includes/database.php');
   require_once('../includes/functions.php');
-
+  // Set active page for navigation
   $active_page = "movies";
-
+  // Render header
   include('../includes/header.php');
-  // Query database
-
+  // Set default for movie result
   $result_movies="";
-
+  // Pagination
   if (isset($_GET['pageno'])) {
    $pageno = $_GET['pageno'];
   } else {
    $pageno = 1;
   } // if
-
+  // Query movie database
   list_all_movies();
-
  ?>
  <div class="container">
    <div class="main">

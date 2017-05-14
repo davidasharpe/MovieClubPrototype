@@ -1,23 +1,24 @@
 <?php
+  // Include session & functions
   require_once('../includes/session.php');
   require_once('../includes/functions.php');
+  // Check if user is logged in as admin, if not rediect to login page
   if(($logged_in == false) || ($user_type != "admin")){
     redirect_to('login.php');
   }
+  // Include database
   require_once('../includes/database.php');
-
+  // Set active page for navigation
   $active_page = "admin";
-
+  // Render header
   include('../includes/header.php');
-
-  $result_movies="";
-
+  // Pagination
   if (isset($_GET['pageno'])) {
    $pageno = $_GET['pageno'];
   } else {
    $pageno = 1;
-  } // if
-
+  }
+  // List all members
   list_all_members();
 ?>
 <div class="container">

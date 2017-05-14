@@ -15,7 +15,6 @@
     // Validate fileds
     validate_select_field($rating);
     validate_text($review, 'a review');
-
     // if there are no errors add to database
     if ($form_errors == false){
         $insert_rating = "INSERT INTO movie_rating
